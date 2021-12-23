@@ -155,6 +155,7 @@ public class Generator
                 {
                     found = true;
                 }
+                idx++;
             }
             return idx;
         }
