@@ -142,35 +142,16 @@ public class Generator
     private static SoundItem GetSoundSet(FileEntry[] files, string rpfName)
     {
         List<SetItem> setItems = new();
-        List<int> itemHash = new();
-        // JenkHash sorting in Scriptname dlcName_songName
-        int GetListIdx(int hash)
-        {
-            int idx = 0;
-            bool found = false;
-            while (!found && idx < itemHash.Count)
-            {
-                int comparingHash = itemHash.ElementAt(idx);
-                if (hash < comparingHash)
-                {
-                    found = true;
-                }
-                idx++;
-            }
-            return idx;
-        }
         foreach (FileEntry file in files)
         {
             string scriptName = Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(file.name));
-            JenkHash hash = new(scriptName, JenkHashInputEncoding.UTF8);
-            int idx = GetListIdx(hash.HashInt);
-            setItems.Insert(idx, new()
+            setItems.Add(new()
             {
                 ScriptName = scriptName,
                 ChildSound = $"{scriptName}_mt"
             });
-            itemHash.Insert(idx, hash.HashInt);
         }
+
         SoundItem soundSet = new SoundItem()
         {
             type = "SoundSet",
@@ -179,7 +160,7 @@ public class Generator
             {
                 Flags = CreateValue("0xAAAAAAAA")
             },
-            Items = setItems.ToArray()
+            Items = setItems.OrderBy(x => new JenkHash(x.ScriptName, JenkHashInputEncoding.UTF8).HashUint).ToArray()
         };
         return soundSet;
     }

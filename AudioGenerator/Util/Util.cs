@@ -63,7 +63,7 @@ namespace AudioGenerator.Util
         {
             // Strip name from input file
             string fileName = Util.CustomTrimmer(Path.GetFileName(input));
-            string args = $"-i {input.Escape()}.mp3 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -acodec \"pcm_s16le\" -ac 1 -filter_complex \"channelsplit = channel_layout = stereo[l][r]\" -map \"[l]\" {output.Escape()}\\{fileName}_left.wav -acodec \"pcm_s16le\" -ac 1 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -map \"[r]\" {output.Escape()}\\{fileName}_right.wav";
+            string args = $"-i {input.Escape()}.mp3 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -acodec \"pcm_s16le\" -ac 1 -filter_complex \"channelsplit = channel_layout = stereo[l][r]\" -map \"[l]\" {output.Escape()}\\{fileName}_l.wav -acodec \"pcm_s16le\" -ac 1 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -map \"[r]\" {output.Escape()}\\{fileName}_r.wav";
             await FFmpeg.Conversions.New().Start(args);
         }
 
