@@ -52,7 +52,7 @@ namespace AudioGenerator.Model
 
             // Create dlc_xxx_xxx dir for awc file
             DirectoryInfo rpfInfo = new DirectoryInfo(Path.Combine(this.manifest.outputPath,
-                $"dlc_{manifest.dlcName}_{Util.Util.CustomTrimmer(entryName)}"));
+                $"dlc_{manifest.dlcName}"));
             if (rpfInfo.Exists)
             {
                 rpfInfo.Delete(true);
@@ -88,7 +88,7 @@ namespace AudioGenerator.Model
             foreach (FileInfo file in tmpInfo.GetFiles())
             {
                 string fileName = Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(inputPath));
-                if (file.Name.Equals($"{fileName}_left.wav") || file.Name.Equals($"{fileName}_right.wav"))
+                if (file.Name.Equals($"{fileName}_l.wav") || file.Name.Equals($"{fileName}_r.wav"))
                 {
                     file.Delete();
                 }
@@ -97,7 +97,7 @@ namespace AudioGenerator.Model
             await FFMPEG.ConvertFile(Path.Combine(inputInfo.DirectoryName, Path.GetFileNameWithoutExtension(inputPath)),
                 tmpInfo.FullName);
             return await FFMPEG.GetFilteredInfo(Path.Combine(tmpInfo.FullName,
-                $"{Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(inputPath))}_left.wav"));
+                $"{Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(inputPath))}_l.wav"));
         }
 
         public async Task startFileGeneration()
@@ -132,7 +132,7 @@ namespace AudioGenerator.Model
                 Path.Combine(manifest.outputPath, "_tmp", $"dlc_{manifest.dlcName}_{trimmedName}.awc.xml");
             AWC.Generator.GenerateAWCXml(awcXmlPath, entry.files);
             // Generate AWC file from XML
-            string awcPath = Path.Combine(manifest.outputPath, $"dlc_{manifest.dlcName}_{trimmedName}",
+            string awcPath = Path.Combine(manifest.outputPath, $"dlc_{manifest.dlcName}",
                 $"{trimmedName}.awc");
             XmlDocument awcDoc = new();
             awcDoc.Load(awcXmlPath);
@@ -142,7 +142,7 @@ namespace AudioGenerator.Model
 
         public void GenerateDatFile(DataEntry entry)
         {
-            string trimmedName = Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(entry.name));
+            string trimmedName = Util.Util.CustomTrimmer(entry.name);
             string datXmlPath = Path.Combine(manifest.outputPath, "_tmp",
                 $"dlc_{manifest.dlcName}_{trimmedName}.dat54.rel.xml");
             Dat54.Generator.GenerateDat54Xml(datXmlPath, $"dlc_{manifest.dlcName}/{trimmedName}", entry.files);
