@@ -1,19 +1,16 @@
-﻿using System.Diagnostics;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace AudioGenerator.Model
+namespace AudioGenerator.Model;
+
+public class Generic
 {
-    public class Generic
-    {
-        public class Value
-        {
-            [XmlAttribute]
-            public string value { get; set; }
-        }
-        public static Value CreateValue(string val)
-        {
-            return new Value() { value = val };
-        }
+  public static Value CreateValue(string val)
+  {
+    return new Value {value = val};
+  }
 
-    }
+  public class Value
+  {
+    [XmlAttribute] public string value { get; set; }
+  }
 }

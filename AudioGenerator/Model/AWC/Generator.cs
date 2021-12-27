@@ -10,9 +10,9 @@ public class Generator
   {
     return new[]
     {
-      new ChunkItem() {Type = "peak"},
-      new ChunkItem() {Type = "data"},
-      new ChunkItem()
+      new ChunkItem {Type = "peak"},
+      new ChunkItem {Type = "data"},
+      new ChunkItem
       {
         Type = "format",
         Codec = "ADPCM",
@@ -24,26 +24,26 @@ public class Generator
         LoopBegin = CreateValue("0"),
         LoopEnd = CreateValue("0"),
         LoopPoint = CreateValue("-1"),
-        Peak = new Unk() {unk = "0"}
+        Peak = new Unk {unk = "0"}
       }
     };
   }
 
   public static void GenerateAWCXml(string path, FileEntry[] files)
   {
-    AudioWaveContainer awc = new AudioWaveContainer();
+    var awc = new AudioWaveContainer();
     awc.Version = CreateValue("1");
     awc.ChunkIndices = CreateValue("True");
     List<StreamItem> _streams = new();
-    foreach (FileEntry file in files)
+    foreach (var file in files)
     {
       // add left & right stream
-      string side = "_l";
+      var side = "_l";
       // loop 2 times
-      for (int i = 0; i < 2; i++)
+      for (var i = 0; i < 2; i++)
       {
         StreamItem item = new();
-        String formattedStr = Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(file.name));
+        var formattedStr = Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(file.name));
         item.Name = $"{formattedStr}{side}";
         item.FileName = $"{formattedStr}{side}.wav";
         item.Chunks = GenerateChunks(file.samples, file.sampleRate);

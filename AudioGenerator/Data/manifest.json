@@ -1,33 +1,33 @@
 {
-	"dlcName": "nutty",
-	"outputPath": "C:\\Users\\janle\\Documents\\gitrepos\\AudioGenerator\\output",
-	"data": [
-		{
-			"name": "Sounds",
-			"files": [
-				{
-					"name": "phone_dial.mp3",
-					"looped": true,
-					"headers": {
-						"volume": 100,
-						"distance": 15,
-						"dopplerFactor": 0,
-						"categoryHash": "02C7B342",
-						"rolloffHash": "C2770146"
-					}
-				},
-				{
-					"name": "phone_ringtone.mp3",
-					"looped": true,
-					"headers": {
-						"volume": 100,
-						"distance": 15,
-						"dopplerFactor": 0,
-						"categoryHash": "02C7B342",
-						"rolloffHash": "C2770146"
-					}
-				}
-			]
-		}
-	]
+  "dlcName": "nutty",
+  "outputPath": "C:\\Users\\janle\\Documents\\gitrepos\\AudioGenerator\\output",
+  "data": [
+    {
+      "name": "Sounds",
+      "files": [
+        {
+          "name": "phone_dial.mp3",
+          "looped": true,
+          "headers": {
+            "volume": 100,
+            "distance": 15,
+            "dopplerFactor": 0,
+            "categoryHash": "02C7B342",
+            "rolloffHash": "C2770146"
+          }
+        },
+        {
+          "name": "phone_ringtone.mp3",
+          "looped": true,
+          "headers": {
+            "volume": 100,
+            "distance": 15,
+            "dopplerFactor": 0,
+            "categoryHash": "02C7B342",
+            "rolloffHash": "C2770146"
+          }
+        }
+      ]
+    }
+  ]
 }
