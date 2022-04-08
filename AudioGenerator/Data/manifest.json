@@ -1,6 +1,6 @@
 {
   "dlcName": "nutty",
-  "outputPath": "C:\\Users\\janle\\Documents\\gitrepos\\AudioGenerator\\output",
+  "outputPath": "C:\\Users\\janle\\Documents\\projects\\git\\audio-generator\\output",
   "data": [
     {
       "name": "Sounds",
@@ -22,6 +22,17 @@
           "headers": {
             "volume": 100,
             "distance": 15,
+            "dopplerFactor": 0,
+            "categoryHash": "02C7B342",
+            "rolloffHash": "C2770146"
+          }
+        },
+        {
+          "name": "lowfuel.mp3",
+          "looped": false,
+          "headers": {
+            "volume": 100,
+            "distance": 5,
             "dopplerFactor": 0,
             "categoryHash": "02C7B342",
             "rolloffHash": "C2770146"
