@@ -43,7 +43,7 @@
           "looped": false,
           "headers": {
             "volume": 100,
-            "distance": 5,
+            "distance": 15,
             "dopplerFactor": 0,
             "categoryHash": "02C7B342",
             "rolloffHash": "C2770146"
@@ -54,7 +54,7 @@
           "looped": false,
           "headers": {
             "volume": 100,
-            "distance": 5,
+            "distance": 15,
             "dopplerFactor": 0,
             "categoryHash": "02C7B342",
             "rolloffHash": "C2770146"
