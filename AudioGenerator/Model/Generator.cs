@@ -81,9 +81,11 @@ internal class Generator
     foreach (var entry in manifest.data)
     {
       await GenerateAWCFile(entry);
-      Console.WriteLine("Generated AWC file");
+      Console.WriteLine($"Generated AWC file for {entry.name}");
       GenerateDatFile(entry);
-      Console.WriteLine("Generated Dat file");
+      Console.WriteLine($"Generated Dat file for {entry.name}");
+      GenerateNameTable(entry);
+      Console.WriteLine($"Generated nametable for {entry.name}");
     }
   }
 
@@ -125,6 +127,21 @@ internal class Generator
     dat54Doc.Load(datXmlPath);
     var rel54File = XmlRel.GetRel(dat54Doc);
     File.WriteAllBytes(datPath, rel54File.Save());
+  }
+
+  public void GenerateNameTable(DataEntry entry)
+  {
+    // This will create a .nametable file in the dat54 dir
+    string nameTablePath =  Path.Combine(manifest.outputPath, "data", $"{Util.Util.CustomTrimmer(entry.name)}.dat54.nametable");
+    string content = "";
+    foreach (var fileEntry in entry.files)
+    {
+      foreach (var suffix in new string[]{"_l", "_r", "_css", "_loop", "_mt"})
+      {
+        content+=Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(fileEntry.name))+suffix+"\n";
+      }
+    }
+    File.WriteAllText(nameTablePath, content);
   }
 
   public async Task DownloadFFmpeg()
