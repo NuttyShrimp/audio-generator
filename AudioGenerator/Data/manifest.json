@@ -1,6 +1,6 @@
 {
   "dlcName": "nutty",
-  "outputPath": "C:\\Users\\janle\\Documents\\projects\\git\\audio-generator\\output",
+  "outputPath": "E:\\gitrepos\\audio-generator\\output",
   "data": [
     {
       "name": "Sounds",
@@ -51,6 +51,17 @@
         },
         {
           "name": "car_unlock.mp3",
+          "looped": false,
+          "headers": {
+            "volume": 100,
+            "distance": 5,
+            "dopplerFactor": 0,
+            "categoryHash": "02C7B342",
+            "rolloffHash": "C2770146"
+          }
+        },
+        {
+          "name": "error_sound.ogg",
           "looped": false,
           "headers": {
             "volume": 100,
