@@ -50,9 +50,9 @@ internal class FFMPEG
     public static async Task ConvertFile(string input, string output)
   {
     // Strip name from input file
-    var fileName = Util.CustomTrimmer(Path.GetFileName(input));
+    var fileName = Util.CustomTrimmer(Path.GetFileNameWithoutExtension(input));
     var args =
-      $"-i {input.Escape()}.mp3 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -acodec \"pcm_s16le\" -ac 1 -filter_complex \"channelsplit = channel_layout = stereo[l][r]\" -map \"[l]\" {output.Escape()}\\{fileName}_l.wav -acodec \"pcm_s16le\" -ac 1 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -map \"[r]\" {output.Escape()}\\{fileName}_r.wav";
+      $"-i {input.Escape()} -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -acodec \"pcm_s16le\" -ac 1 -filter_complex \"channelsplit = channel_layout = stereo[l][r]\" -map \"[l]\" {output.Escape()}\\{fileName}_l.wav -acodec \"pcm_s16le\" -ac 1 -fflags +bitexact -flags:v +bitexact -flags:a +bitexact -map \"[r]\" {output.Escape()}\\{fileName}_r.wav";
     await FFmpeg.Conversions.New().Start(args);
   }
 

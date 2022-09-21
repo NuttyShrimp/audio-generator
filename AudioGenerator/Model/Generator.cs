@@ -68,7 +68,7 @@ internal class Generator
       if (file.Name.Equals($"{fileName}_l.wav") || file.Name.Equals($"{fileName}_r.wav")) file.Delete();
     }
 
-    await FFMPEG.ConvertFile(Path.Combine(inputInfo.DirectoryName, Path.GetFileNameWithoutExtension(inputPath)),
+    await FFMPEG.ConvertFile(Path.Combine(inputInfo.DirectoryName, Path.GetFileName(inputPath)),
       tmpInfo.FullName);
     return await FFMPEG.GetFilteredInfo(Path.Combine(tmpInfo.FullName,
       $"{Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(inputPath))}_l.wav"));
