@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Text;
+using System.Xml;
 using AudioGenerator.Model.DataManifest;
 using AudioGenerator.Util;
 using CodeWalker.GameFiles;
@@ -133,15 +134,25 @@ internal class Generator
   {
     // This will create a .nametable file in the dat54 dir
     string nameTablePath =  Path.Combine(manifest.outputPath, "data", $"{Util.Util.CustomTrimmer(entry.name)}.dat54.nametable");
-    string content = "";
+    if (File.Exists(nameTablePath))
+    {
+      File.Delete(nameTablePath);
+    }
+    Stream content = File.Open(nameTablePath, FileMode.Create);
+    BinaryWriter writer = new BinaryWriter(content);
+
     foreach (var fileEntry in entry.files)
     {
       foreach (var suffix in new string[]{"_l", "_r", "_css", "_loop", "_mt"})
       {
-        content+=Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(fileEntry.name))+suffix+"\n";
+        string name = Util.Util.CustomTrimmer(Path.GetFileNameWithoutExtension(fileEntry.name))+suffix+char.MinValue;
+        byte[] buffer = Encoding.ASCII.GetBytes(name);
+        writer.Write(buffer);
       }
     }
-    File.WriteAllText(nameTablePath, content);
+    
+    writer.Close();
+    content.Close();
   }
 
   public async Task DownloadFFmpeg()
