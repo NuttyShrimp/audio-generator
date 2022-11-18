@@ -1,6 +1,6 @@
 {
   "dlcName": "nutty",
-  "outputPath": "C:\\Users\\janle\\Documents\\projects\\git\\audio-generator\\output",
+  "outputPath": "E:\\gitrepos\\audio-generator\\output",
   "data": [
     {
       "name": "Sounds",
@@ -84,7 +84,7 @@
         },
         {
           "name": "cuff.ogg",
-          "looped": true,
+          "looped": false,
           "headers": {
             "volume": 100,
             "distance": 15,
@@ -95,10 +95,21 @@
         },
         {
           "name": "uncuff.ogg",
-          "looped": true,
+          "looped": false,
           "headers": {
             "volume": 100,
             "distance": 15,
+            "dopplerFactor": 0,
+            "categoryHash": "02C7B342",
+            "rolloffHash": "C2770146"
+          }
+        },
+        {
+          "name": "emergency.ogg",
+          "looped": false,
+          "headers": {
+            "volume": 100,
+            "distance": 25,
             "dopplerFactor": 0,
             "categoryHash": "02C7B342",
             "rolloffHash": "C2770146"
